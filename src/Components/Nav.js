@@ -1,13 +1,40 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { Menu, Segment } from 'semantic-ui-react'
 
-const Nav = (props) => (
-  <div className="navbar">
-    <button onClick={() => props.changePage("MyTrumpets")} >My Trumpets</button>
-    <button onClick={() => props.changePage("CommunityTrumpets")}>Community Trumpets</button>
-    <button onClick={() => props.changePage("TrumpetAnalytics")}>Trumpet Analytics</button>
-    <button onClick={() => props.changePage("AccountSettings")}>Account Settings</button>
-  </div>
-)
+export default class Nav extends Component {
+  state = { activeItem: 'home' }
 
+  handleItemClick = (e, { name }) => {
+      this.props.changePage(name)
+      this.setState({ activeItem: name })
+  }
 
-export default Nav
+  render() {
+    const { activeItem } = this.state
+
+    return (
+      <div>
+        <Menu pointing secondary>
+          <Menu.Item name='MyTrumpets' active={activeItem === 'MyTrumpets'} onClick={this.handleItemClick} />
+          <Menu.Item
+            name='CommunityTrumpets'
+            active={activeItem === 'CommunityTrumpets'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name='TrumpetAnalytics'
+            active={activeItem === 'TrumpetAnalytics'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Menu position='right'>
+            <Menu.Item
+              name='AccountSettings'
+              active={activeItem === 'AccountSettings'}
+              onClick={this.handleItemClick}
+            />
+          </Menu.Menu>
+        </Menu>
+      </div>
+    )
+  }
+}
