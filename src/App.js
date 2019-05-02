@@ -6,11 +6,39 @@ import TrumpetAnalytics from './Containers/TrumpetAnalytics'
 import AccountSettings from './Containers/AccountSettings'
 import logo from './logo.svg';
 import './App.css';
+import adapter from './Adapter.js';
+
+const userEndpoint = ""
+const trumpetEndpoint = "http://localhost:3000/api/v1/trumpets"
+const userAdapter = adapter(userEndpoint)
+const trumpetAdapter = adapter(trumpetEndpoint)
 
 export default class App extends Component {
 
   state = {
-    page: "MyTrumpets"
+    page: "MyTrumpets",
+    // TODO: Set this based on logged in user eventually
+    userId: "",
+    trumpets: []
+  }
+
+  componentDidMount() {
+    // Fetch all trumpets
+    (async () => {
+      const trumpetsFromApi = await trumpetAdapter.getAll();
+      this.setState({trumpets: trumpetsFromApi}, () => console.table(this.state))
+      this.setState({userId: 1})
+    })();
+
+    // Fetch user specific trumpets code here
+  }
+
+  getUserTrumpets() {
+    // TODO: This is not actually filtering anything out lol.. wait for ID to come in
+    console.log("current user id", this.state.userId)
+    console.log("current user id", this.state.trumpets)
+    return this.state.trumpets === [] ? this.state.trumpets : this.state.trumpets.filter(trumpet => trumpet.user.id === this.state.userId)
+   
   }
 
   changePage = (newPage) => {
@@ -23,11 +51,11 @@ export default class App extends Component {
   renderPage = () => {
     switch(this.state.page){
       case "MyTrumpets":
-        return <MyTrumpets trumpets={null}/>
+        return <MyTrumpets trumpets={this.getUserTrumpets()}/>
       case "CommunityTrumpets":
-        return <CommunityTrumpets trumpets={null}/>
+        return <CommunityTrumpets trumpets={this.state.trumpets}/>
       case "TrumpetAnalytics":
-        return <TrumpetAnalytics />
+        return <TrumpetAnalytics trumpets={this.state.trumpets}/>
       case "AccountSettings":
         return <AccountSettings />
       default:

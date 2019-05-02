@@ -8,17 +8,14 @@ export default class Trumpets extends React.Component {
 
 
     renderTrumpets() {
-        const testTrumpets = [{trumpet_name: "Bad Article", trumpet_type: "Bias"}, {trumpet_name: "Bad Article", trumpet_type: "Bias"}]
-        return testTrumpets.map(trumpet => <TrumpetCard trumpet={trumpet}/>)
+        return this.props.trumpets.map(trumpet => <TrumpetCard trumpet={trumpet}/>)
     }
 
     render() {
         return (
-        <div>
             <Item.Group divided>
                 {this.renderTrumpets()}
             </Item.Group>
-        </div>
         )
 
     }
