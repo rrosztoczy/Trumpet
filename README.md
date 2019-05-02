@@ -1,5 +1,42 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+<!-- TODO:
+*************************************************************CRUD**************************************************************
+Adapter (CRUD for all three is index, create, update, delete)
+WIP [] - CRUD on trumpet adapter
+[] - Create reaction adapter w/ CRUD
+[] - Create user adapter w/ CRUD
+
+Trumpet Cards 
+[] - Finish create trumpet form
+[] - Finish edit trumpet form
+[] - Finish delete trumpet form
+
+CRUD Callbacks
+[] - Create trumpet CRUD callbacks
+[] - Create reaction CRUD callbacks
+[] - Create user CRUD callbacks
+
+CRUD ElementsFunctionality
+[] - Attach callbacks to appropriate buttons, etc.
+
+***********************************************************Styling**************************************************************
+
+Home Page (Sign In/Sign Up)
+My Trumpets
+Community Trumpets
+Trumpet Analytics
+Account Settings
+Trumpet Card
+
+***********************************************************Bonus**************************************************************
+Full Auth
+Create Chrome Extension
+Google Fact Check API
+
+-->
+
+
 ## Available Scripts
 
 In the project directory, you can run:

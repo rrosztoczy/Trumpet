@@ -34,9 +34,6 @@ export default class App extends Component {
   }
 
   getUserTrumpets() {
-    // TODO: This is not actually filtering anything out lol.. wait for ID to come in
-    console.log("current user id", this.state.userId)
-    console.log("current user id", this.state.trumpets)
     return this.state.trumpets === [] ? this.state.trumpets : this.state.trumpets.filter(trumpet => trumpet.user.id === this.state.userId)
    
   }
@@ -47,7 +44,7 @@ export default class App extends Component {
     })
   }
 
-
+  // TODO: Add in sign in and sign out page here
   renderPage = () => {
     switch(this.state.page){
       case "MyTrumpets":
