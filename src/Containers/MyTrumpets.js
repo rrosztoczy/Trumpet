@@ -13,8 +13,9 @@ export default class MyTrumpets extends Component {
         this.setState(prevState => ({new: !prevState.new}))
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = (e, newTrumpet) => {
         e.preventDefault()
+        console.log("submitted obj", newTrumpet)
         this.setState(prevState => ({new: !prevState.new}))
     }
 
