@@ -10,15 +10,16 @@ export default class MyTrumpets extends Component {
     }
 
     onClickNew = () => {
-        this.setState({new: true})
+        this.setState(prevState => ({new: !prevState.new}))
     }
 
-    onClickCreate = () => {
-        this.setState({new: false})
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.setState(prevState => ({new: !prevState.new}))
     }
 
     renderNewTrumpetForm() {
-        return <NewTrumpetCard onClickCreate={this.onClickCreate} />
+        return <NewTrumpetCard handleSubmit={this.handleSubmit} />
     }
 
     render() {
