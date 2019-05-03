@@ -18,6 +18,7 @@ const trumpetAdapter = adapter(trumpetEndpoint)
 export default class App extends Component {
 
   state = {
+    // TODO: Set user state
     page: "Login",
   }
 
@@ -34,17 +35,20 @@ export default class App extends Component {
 
   createNewUser = (userInfo) => {
     const newUser = { userInfo }
-    userAdapter.create(newUser.userInfo, this.handleNewUser)
+    userAdapter.create(newUser.userInfo, this.handleUser)
     this.changePage("MyTrumpets")
   }
 
-  handleNewUser = (newUser) => {
-    this.setState({userId: newUser.id}, () => console.log("created user:", newUser))
+  handleUser = (userId) => {
+    this.setState({userId: userId}, () => console.log("created user:", userId))
   }
 
 
   // User submits login form
-  handleLoginSubmit = () => {
+  handleLoginSubmit = (e, userInfo) => {
+    // TODO: Add a fetch for the user from this this.handleUser()
+    console.log("login submitting", userInfo)
+    userAdapter.getAll(userInfo, this.handleUser)
     this.changePage("MyTrumpets")
   }
 
@@ -74,6 +78,7 @@ export default class App extends Component {
   }
 
   // TODO: Add in sign in and sign out page here
+  // TODO: Add logout opiton to menu and a home landing ne
   renderPage = () => {
     switch(this.state.page){
       case "Login":
@@ -81,7 +86,7 @@ export default class App extends Component {
       case "SignUp":
         return <SignUp handleFormChange={this.handleFormChange} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} createNewUser={this.createNewUser} />
       case "MyTrumpets":
-        return <MyTrumpets trumpets={this.getUserTrumpets()} trumpetAdapter={trumpetAdapter} trumpetEndpoint={trumpetEndpoint}/>
+        return <MyTrumpets trumpets={this.getUserTrumpets()} trumpetAdapter={trumpetAdapter} trumpetEndpoint={trumpetEndpoint} user_id={this.state.user_id}/>
       case "CommunityTrumpets":
         return <CommunityTrumpets trumpets={this.state.trumpets}/>
       case "TrumpetAnalytics":
