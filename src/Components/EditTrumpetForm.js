@@ -57,7 +57,8 @@ export default class EditTrumpetForm extends React.Component {
           </Form.Group>
           <Form.TextArea onChange={this.handleChange} label='Content' placeholder='Tell us more about you...' name="content" value={this.state.content} />
           {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
-          <Form.Button >Create</Form.Button>
+          <Form.Button primary>Submit Changes</Form.Button>
+          <Form.Button primary floated='right' >Cancel</Form.Button>
         </Form>
       )
     }
