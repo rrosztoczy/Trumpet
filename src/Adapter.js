@@ -30,6 +30,14 @@ const adapter = (url) => {
     //     }
     // }
 
+    //User Creation Body
+    //  {
+    //     "first_name": "",
+    //     "last_name": "",
+    //     "username": "",
+    //     "password": "",
+    //  }
+
     const create = async (postBody) => {
         const postConfig = {
             method: "POST",
