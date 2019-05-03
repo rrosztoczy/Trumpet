@@ -19,13 +19,7 @@ export default class App extends Component {
 
   state = {
     page: "Login",
-    // TODO: Set this based on logged in user eventually
-    userId: "",
-    username: "",
-    password: "",
-    trumpets: [],
-    first_name: "",
-    last_name: ""
+  
   }
 
   componentDidMount() {
@@ -39,12 +33,6 @@ export default class App extends Component {
     // Fetch user specific trumpets code here
   }
 
-  // User input to login or sign up forms (reusable for more forms?)
-  handleFormChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
 
   // User submits login form
   handleLoginSubmit = () => {
@@ -54,6 +42,8 @@ export default class App extends Component {
   // User submits signup form
   handleSignUpFormSubmit = () => {
     // TODO: Post new user to backend
+    // const newUser = {}
+    // userAdapter.create(newUser)
     this.changePage("MyTrumpets")
   }
 

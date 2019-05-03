@@ -13,6 +13,7 @@ export default class MyTrumpets extends Component {
         this.setState(prevState => ({new: !prevState.new}))
     }
 
+ 
     handleSubmit = (e, newTrumpet) => {
         //TODO: Replace hardcoded user id
         e.preventDefault();
