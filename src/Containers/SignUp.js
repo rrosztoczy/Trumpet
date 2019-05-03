@@ -1,7 +1,25 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 
-const SignUp = (props) => (
+export default class SignUp extends React.Component {
+
+    state =  {userId: "",
+    username: "",
+    password: "",
+    first_name: "",
+    last_name: "",
+    email: ""
+  }
+
+  handleFormChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+
+  render() {
+  return(
   <div className='login-form'>
     {/*
       Heads up! The styles below are necessary for the correct render of this example.
@@ -16,6 +34,22 @@ const SignUp = (props) => (
       }
     `}
     </style>
+
+        {/* // User input to login or sign up forms (reusable for more forms?)
+  handleFormChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  } */}
+
+        {/* // TODO: Set this based on logged in user eventually
+    { userId: "",
+    username: "",
+    password: "",
+    trumpets: [],
+    first_name: "",
+    last_name: ""
+  {/* } */}
     <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h2' color='teal' textAlign='center'>
@@ -23,22 +57,24 @@ const SignUp = (props) => (
         </Header>
         <Form size='large'>
           <Segment stacked>
-            <Form.Input fluid name="first_name" placeholder='First name' onChange={(e) => props.handleFormChange(e)} />
-            <Form.Input fluid name="last_name" placeholder='Last name' onChange={(e) => props.handleFormChange(e)} />
-            <Form.Input fluid name="username" placeholder='username' onChange={(e) => props.handleFormChange(e)} />
-            <Form.Input fluid name="password" icon='lock' iconPosition='left' placeholder='password' type='password' onChange={(e) => props.handleFormChange(e)} />
+            <Form.Input fluid name="first_name" placeholder='First name' onChange={(e) => this.handleFormChange(e)} />
+            <Form.Input fluid name="last_name" placeholder='Last name' onChange={(e) => this.handleFormChange(e)} />
+            <Form.Input fluid name="username" placeholder='username' onChange={(e) => this.handleFormChange(e)} />
+            <Form.Input fluid name="email" placeholder='email' onChange={(e) => this.handleFormChange(e)} />
+            <Form.Input fluid name="password" icon='lock' iconPosition='left' placeholder='password' type='password' onChange={(e) => this.props.handleFormChange(e)} />
 
-            <Button color='teal' fluid size='large' onClick={() => props.handleSignUpFormSubmit()}>
+            <Button color='teal' fluid size='large' onClick={() => this.props.handleSignUpFormSubmit()}>
               Sign Up
             </Button>
           </Segment>
         </Form>
         <Message>
-          Already have an account? <button onClick={() => props.handleLoginOrSignUpButtonClick()}>Log in</button>
+          Already have an account? <button onClick={() => this.props.handleLoginOrSignUpButtonClick()}>Log in</button>
         </Message>
       </Grid.Column>
     </Grid>
   </div>
 )
+}
+}
 
-export default SignUp

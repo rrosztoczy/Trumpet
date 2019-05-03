@@ -1,35 +1,20 @@
 import React from 'react'
 import { Button, Icon, Image, Item, Label } from 'semantic-ui-react'
+import EditTrumpetForm from './EditTrumpetForm'
+import TrumpetItem from './TrumpetItem'
 
 
 
-const TrumpetCard = ({ trumpet }) => {
-    const paragraph = <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-    console.log("object", trumpet)
-    console.log("content", trumpet.content)
+export default class TrumpetCard extends React.Component {
+    state = {
+        edit: false
+    }
 
+    onClickEdit = () => {
+        this.setState(prevState => ({edit: !prevState.edit}), () => console.log("edit state", this.state.edit))
+    }
 
-    return(
-    <Item>
-        <Item.Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
-        <Item.Content>
-          <Item.Header as='a'>{trumpet.summary}</Item.Header>
-          <Item.Meta>
-            <span className='cinema'>{trumpet.trumpet_type}</span>
-          </Item.Meta>
-          <Item.Description>{trumpet.content}</Item.Description>
-          <Item.Extra>
-            <Button primary floated='right'>
-              Edit
-              <Icon name='right edit outline' />
-            </Button>
-            <Label floated='left'>Cheer</Label>
-            <Label floated='left'>Jeer</Label>
-            {/* <Icon color='green' name='check' /> 121 Votes */}
-          </Item.Extra>
-        </Item.Content>
-      </Item>
-      )
+render() {
+    return this.state.edit ? <EditTrumpetForm trumpet={this.props.trumpet}/> : <TrumpetItem trumpet={this.props.trumpet} onClickEdit={this.onClickEdit}/>
+    }
 }
-
-export default TrumpetCard

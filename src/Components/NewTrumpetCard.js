@@ -7,7 +7,7 @@ const options = [
     { key: 'l', text: 'Lie', name: "trumpet_type", value: 'Lie' },
     { key: 'n', text: 'No Sources', name: "trumpet_type", value: 'No Sources' }
   ]
-export default class TrumpetCard extends React.Component {
+export default class NewTrumpetCard extends React.Component {
 
     // console.log("object", trumpet)
     // console.log("content", trumpet.content)
