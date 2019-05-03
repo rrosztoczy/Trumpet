@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
+import React from 'react'
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
-const SignUp = (props) => (
+const Login = (props) => (
   <div className='login-form'>
     {/*
       Heads up! The styles below are necessary for the correct render of this example.
@@ -19,26 +19,24 @@ const SignUp = (props) => (
     <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h2' color='teal' textAlign='center'>
-          <Image src='/logo.png' /> Sign up with Trumpet
+          <Image src='/logo.png' /> Log in to your Trumpet account
         </Header>
         <Form size='large'>
           <Segment stacked>
-            <Form.Input fluid name="first_name" placeholder='First name' onChange={(e) => props.handleFormChange(e)} />
-            <Form.Input fluid name="last_name" placeholder='Last name' onChange={(e) => props.handleFormChange(e)} />
-            <Form.Input fluid name="username" placeholder='username' onChange={(e) => props.handleFormChange(e)} />
+            <Form.Input fluid name="username" icon='user' iconPosition='left' placeholder='username' onChange={(e) => props.handleFormChange(e)} />
             <Form.Input fluid name="password" icon='lock' iconPosition='left' placeholder='password' type='password' onChange={(e) => props.handleFormChange(e)} />
 
-            <Button color='teal' fluid size='large' onClick={() => props.handleSignUpFormSubmit()}>
-              Sign Up
+            <Button color='teal' fluid size='large' onClick={() => props.handleLoginSubmit()}>
+              Login
             </Button>
           </Segment>
         </Form>
         <Message>
-          Already have an account? <button onClick={() => props.handleLoginOrSignUpButtonClick()}>Log in</button>
+          New to us? <button onClick={() => props.handleLoginOrSignUpButtonClick()}>Sign Up</button>
         </Message>
       </Grid.Column>
     </Grid>
   </div>
 )
 
-export default SignUp
+export default Login
