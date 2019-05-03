@@ -61,9 +61,9 @@ export default class SignUp extends React.Component {
             <Form.Input fluid name="last_name" placeholder='Last name' onChange={(e) => this.handleFormChange(e)} />
             <Form.Input fluid name="username" placeholder='username' onChange={(e) => this.handleFormChange(e)} />
             <Form.Input fluid name="email" placeholder='email' onChange={(e) => this.handleFormChange(e)} />
-            <Form.Input fluid name="password" icon='lock' iconPosition='left' placeholder='password' type='password' onChange={(e) => this.props.handleFormChange(e)} />
+            <Form.Input fluid name="password" icon='lock' iconPosition='left' placeholder='password' type='password' onChange={(e) => this.handleFormChange(e)} />
 
-            <Button color='teal' fluid size='large' onClick={() => this.props.handleSignUpFormSubmit()}>
+            <Button color='teal' fluid size='large' onClick={() => this.props.createNewUser(this.state)}>
               Sign Up
             </Button>
           </Segment>

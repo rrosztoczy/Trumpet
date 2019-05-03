@@ -38,13 +38,38 @@ const adapter = (url) => {
     //     "password": "",
     //  }
 
-    const create = async (postBody) => {
+    const create = async (postBody, handleNewUser) => {
         const postConfig = {
             method: "POST",
             headers: headers,
             body: JSON.stringify(postBody)
         }
         const resp = await fetch(url, postConfig)
+        const jsonData = await resp.json()
+        console.log("response:", jsonData)
+        handleNewUser ? handleNewUser(jsonData) : console.log("hi")
+        return jsonData
+    }
+
+    const update = async (id, postBody) => {
+        const postConfig = {
+            method: "PATCH",
+            headers: headers,
+            body: JSON.stringify(postBody)
+        }
+        const resp = await fetch(url + "/" + id, postConfig)
+        const jsonData = await resp.json()
+        console.log("response:", jsonData)
+        return jsonData
+    }
+
+
+    const destroy = async (id) => {
+        const postConfig = {
+            method: "DELETE",
+            headers: headers
+        }
+        const resp = await fetch(url + "/:" + id, postConfig)
         const jsonData = await resp.json()
         console.log("response:", jsonData)
         return jsonData
@@ -54,7 +79,9 @@ const adapter = (url) => {
     return {
         getAll,
         getOne,
-        create
+        create,
+        update,
+        destroy
     }
 }
 
