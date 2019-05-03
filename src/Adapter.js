@@ -1,4 +1,4 @@
-
+// TODO:Validations if failed sign up, login, new alert, edit alert, destroy alert, or create/remove reaction
 
 const adapter = (url) => {
     // TODO: Full CRUD
@@ -7,14 +7,20 @@ const adapter = (url) => {
         'Accept': 'application/json'
       }
 
-    const getAll = async () => {
+    const getAll = async (user, handleUser) => {
         const resp = await fetch(url)
         const jsonData = await resp.json()
+        console.log("json resp", jsonData)
+        // Probably trying to hit sthis on the initial gets for trumpets too
+        user ? console.log("entered un", user.username, "entered pw", user.password) : console.log("hehe")
+        const userForLogin = user ? jsonData.find(userFromBe => (userFromBe.username === user.username && userFromBe.password === user.password)) : null
+        user ? console.log("found user", userForLogin.username) : console.log("hi")
+        userForLogin && handleUser ? handleUser(userForLogin.id) : console.log("hi")
         return jsonData
     }
 
     const getOne = async (id) => {
-        const resp = await fetch(url + "/:" + id)
+        const resp = await fetch(url + "/" + id)
         const jsonData = await resp.json()
         return jsonData
     }
@@ -38,7 +44,7 @@ const adapter = (url) => {
     //     "password": "",
     //  }
 
-    const create = async (postBody, handleNewUser) => {
+    const create = async (postBody, handleUser) => {
         const postConfig = {
             method: "POST",
             headers: headers,
@@ -47,7 +53,7 @@ const adapter = (url) => {
         const resp = await fetch(url, postConfig)
         const jsonData = await resp.json()
         console.log("response:", jsonData)
-        handleNewUser ? handleNewUser(jsonData) : console.log("hi")
+        handleUser ? handleUser(jsonData.id) : console.log("hi")
         return jsonData
     }
 
@@ -69,7 +75,7 @@ const adapter = (url) => {
             method: "DELETE",
             headers: headers
         }
-        const resp = await fetch(url + "/:" + id, postConfig)
+        const resp = await fetch(url + "/" + id, postConfig)
         const jsonData = await resp.json()
         console.log("response:", jsonData)
         return jsonData
