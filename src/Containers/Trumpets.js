@@ -8,7 +8,7 @@ export default class Trumpets extends React.Component {
 
 
     renderTrumpets() {
-        return this.props.trumpets.map(trumpet => <TrumpetCard trumpet={trumpet}/>)
+        return this.props.trumpets.map(trumpet => <TrumpetCard trumpet={trumpet} handleSubmitEdit={this.props.handleSubmitEdit}/>)
     }
 
     render() {

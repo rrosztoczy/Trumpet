@@ -25,6 +25,7 @@ export default class EditTrumpetForm extends React.Component {
 
 
     state = {
+      id: this.props.trumpet.id,
       summary: this.props.trumpet.summary,
       url: this.props.trumpet.url,
       root_url: this.props.trumpet.root_url,
@@ -44,7 +45,7 @@ export default class EditTrumpetForm extends React.Component {
       const { state } = this.state
       console.log("edit state", this.state)
       return (
-        <Form >
+        <Form onSubmit={event => this.props.onSubmitEdit(event, this.state)} >
          {/* <Form onSubmit={(event, newTrumpet) => this.props.handleSubmit(event, this.state)}> */}
           <Form.Group widths='equal'>
             <Form.Input onChange={this.handleChange} fluid label='Summary' placeholder='Summary' name="summary" value={this.state.summary} />
@@ -58,7 +59,7 @@ export default class EditTrumpetForm extends React.Component {
           <Form.TextArea onChange={this.handleChange} label='Content' placeholder='Tell us more about you...' name="content" value={this.state.content} />
           {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
           <Form.Button primary>Submit Changes</Form.Button>
-          <Form.Button primary floated='right' >Cancel</Form.Button>
+          <Form.Button primary floated='right' onClick={this.props.cancelEdit} >Cancel</Form.Button>
         </Form>
       )
     }

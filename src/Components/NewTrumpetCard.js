@@ -34,7 +34,7 @@ export default class NewTrumpetCard extends React.Component {
     render() {
       const { value } = this.state
       return (
-        <Form onSubmit={(event, newTrumpet) => this.props.handleSubmit(event, this.state)}>
+        <Form onSubmit={(event, newTrumpet) => this.props.handleSubmitNew(event, this.state)}>
           <Form.Group widths='equal'>
             <Form.Input onChange={this.handleChange} fluid label='Summary' placeholder='Summary' name="summary" value={this.state.summary ? this.state.summary : null} />
             {/* Figure out selection value */}

@@ -10,7 +10,7 @@ import adapter from './Adapter.js';
 import Login from './Containers/Login'
 import SignUp from './Containers/SignUp'
 
-const userEndpoint = ""
+const userEndpoint = "http://localhost:3000/api/v1/users"
 const trumpetEndpoint = "http://localhost:3000/api/v1/trumpets"
 const userAdapter = adapter(userEndpoint)
 const trumpetAdapter = adapter(trumpetEndpoint)
@@ -19,7 +19,6 @@ export default class App extends Component {
 
   state = {
     page: "Login",
-  
   }
 
   componentDidMount() {
@@ -31,6 +30,16 @@ export default class App extends Component {
     })();
 
     // Fetch user specific trumpets code here
+  }
+
+  createNewUser = (userInfo) => {
+    const newUser = { userInfo }
+    userAdapter.create(newUser.userInfo, this.handleNewUser)
+    this.changePage("MyTrumpets")
+  }
+
+  handleNewUser = (newUser) => {
+    this.setState({userId: newUser.id}, () => console.log("created user:", newUser))
   }
 
 
@@ -70,7 +79,7 @@ export default class App extends Component {
       case "Login":
         return <Login handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} />
       case "SignUp":
-        return <SignUp handleFormChange={this.handleFormChange} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} handleSignUpFormSubmit={this.handleSignUpFormSubmit} />
+        return <SignUp handleFormChange={this.handleFormChange} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} createNewUser={this.createNewUser} />
       case "MyTrumpets":
         return <MyTrumpets trumpets={this.getUserTrumpets()} trumpetAdapter={trumpetAdapter} trumpetEndpoint={trumpetEndpoint}/>
       case "CommunityTrumpets":
