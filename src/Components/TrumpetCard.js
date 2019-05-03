@@ -13,7 +13,7 @@ const TrumpetCard = ({ trumpet }) => {
     <Item>
         <Item.Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
         <Item.Content>
-          <Item.Header as='a'>Place Holder for Trump Summary</Item.Header>
+          <Item.Header as='a'>{trumpet.summary}</Item.Header>
           <Item.Meta>
             <span className='cinema'>{trumpet.trumpet_type}</span>
           </Item.Meta>

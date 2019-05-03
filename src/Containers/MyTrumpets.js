@@ -14,8 +14,11 @@ export default class MyTrumpets extends Component {
     }
 
     handleSubmit = (e, newTrumpet) => {
-        e.preventDefault()
-        console.log("submitted obj", newTrumpet)
+        //TODO: Replace hardcoded user id
+        e.preventDefault();
+        const hardCodeUserID = {...newTrumpet, user_id: 1}
+        console.log("submitted obj", hardCodeUserID);
+        this.props.trumpetAdapter.create(hardCodeUserID)
         this.setState(prevState => ({new: !prevState.new}))
     }
 

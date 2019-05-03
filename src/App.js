@@ -48,7 +48,7 @@ export default class App extends Component {
   renderPage = () => {
     switch(this.state.page){
       case "MyTrumpets":
-        return <MyTrumpets trumpets={this.getUserTrumpets()}/>
+        return <MyTrumpets trumpets={this.getUserTrumpets()} trumpetAdapter={trumpetAdapter} trumpetEndpoint={trumpetEndpoint}/>
       case "CommunityTrumpets":
         return <CommunityTrumpets trumpets={this.state.trumpets}/>
       case "TrumpetAnalytics":
