@@ -34,10 +34,11 @@ const adapter = (url) => {
         const postConfig = {
             method: "POST",
             headers: headers,
-            body: postBody
+            body: JSON.stringify(postBody)
         }
         const resp = await fetch(url, postConfig)
         const jsonData = await resp.json()
+        console.log("response:", jsonData)
         return jsonData
     }
 
