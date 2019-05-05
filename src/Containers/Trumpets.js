@@ -1,14 +1,14 @@
 import React from 'react'
-import { Button, Icon, Image, Item, Label } from 'semantic-ui-react'
+import { Item } from 'semantic-ui-react'
 import TrumpetCard from '../Components/TrumpetCard'
-
+import { v4 } from 'uuid'
 
 
 export default class Trumpets extends React.Component {
 
 
     renderTrumpets() {
-        return this.props.trumpets.map(trumpet => <TrumpetCard trumpet={trumpet} handleSubmitEdit={this.props.handleSubmitEdit}/>)
+        return this.props.trumpets.map(trumpet => <TrumpetCard key={ v4() } trumpet={trumpet} handleSubmitEdit={this.props.handleSubmitEdit} onReactionClick={this.props.onReactionClick}/>)
     }
 
     render() {
@@ -22,4 +22,3 @@ export default class Trumpets extends React.Component {
 
 
 }
-

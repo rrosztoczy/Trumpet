@@ -13,7 +13,6 @@ export default class MyTrumpets extends Component {
         this.setState(prevState => ({new: !prevState.new}))
     }
 
- 
     handleSubmitNew = (e, newTrumpet) => {
         //TODO: Replace hardcoded user id
         e.preventDefault();
@@ -29,6 +28,7 @@ export default class MyTrumpets extends Component {
         const hardCodeUserID = {...editedTrumpet, user_id: 1}
         console.log("submitted obj", hardCodeUserID);
         // {probably need an id and the obj for update}
+        // from Dave - need to also handle response here?
         this.props.trumpetAdapter.update(hardCodeUserID.id, hardCodeUserID)
         // somehow make sure we are showing the edited form now if i need to
     }
@@ -43,8 +43,8 @@ export default class MyTrumpets extends Component {
         <div>My Trumpets!</div>
         <NewTrumpetPrompt onClickNew={this.onClickNew} />
         <div>{this.state.new ? this.renderNewTrumpetForm() : null}</div>
-        <Trumpets title="My Trumpets" trumpets={this.props.trumpets} handleSubmitEdit={this.handleSubmitEdit}  /* filtered by user*/ />
-        <Trumpets title="My Reactions" trumpets={this.props.trumpets /* filtered by reactions*/} />
+        <Trumpets title="My Trumpets" trumpets={this.props.trumpets /* filtered by user*/} handleSubmitEdit={this.handleSubmitEdit} onReactionClick={this.props.onReactionClick} />
+        <Trumpets title="My Reactions" trumpets={this.props.trumpets /* filtered by reactions*/} onReactionClick={this.props.onReactionClick} />
     </div>
     )}
 }

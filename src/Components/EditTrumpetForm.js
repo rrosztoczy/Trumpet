@@ -1,13 +1,13 @@
 import React from 'react'
-import { Button, Icon, Image, Form, Item, Label } from 'semantic-ui-react'
-const paragraph = <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png'/>
+import { Form } from 'semantic-ui-react'
+// const paragraph = <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png'/>
 const options = [
     { key: 'b', text: 'Bias', name: "trumpet_type", value: 'Bias' },
     { key: 'l', text: 'Lie', name: "trumpet_type", value: 'Lie' },
     { key: 'n', text: 'No Sources', name: "trumpet_type", value: 'No Sources' }
   ]
 
-  
+
 export default class EditTrumpetForm extends React.Component {
 
     // console.log("object", trumpet)
@@ -40,9 +40,9 @@ export default class EditTrumpetForm extends React.Component {
 }
     // handleChange = (e, { value }) => this.setState({ value }, () => console.log('state', this.state))
     // Fully control form with state
-  
+
     render() {
-      const { state } = this.state
+      // const { state } = this.state
       console.log("edit state", this.state)
       return (
         <Form onSubmit={event => this.props.onSubmitEdit(event, this.state)} >
