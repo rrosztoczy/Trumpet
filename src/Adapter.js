@@ -14,8 +14,8 @@ const adapter = (url) => {
         // Probably trying to hit sthis on the initial gets for trumpets too
         user ? console.log("entered un", user.username, "entered pw", user.password) : console.log("hehe")
         const userForLogin = user ? jsonData.find(userFromBe => (userFromBe.username === user.username && userFromBe.password === user.password)) : null
-        user ? console.log("found user", userForLogin.username) : console.log("hi")
-        userForLogin && handleUser ? handleUser(userForLogin.id) : console.log("hi")
+        user ? console.log("found user", userForLogin.id) : console.log("hi")
+        userForLogin && handleUser ? handleUser(userForLogin) : console.log("hi")
         return jsonData
     }
 
@@ -89,7 +89,7 @@ const adapter = (url) => {
         create,
         update,
         destroy
-    }
+        }
 }
 
 export default adapter
