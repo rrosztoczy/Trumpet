@@ -44,7 +44,7 @@ export default class Login extends React.Component {
             <Form.Input fluid name="username" icon='user' iconPosition='left' placeholder='username' onChange={(e) => this.handleFormChange(e)} />
             <Form.Input fluid name="password" icon='lock' iconPosition='left' placeholder='password' type='password' onChange={(e) => this.handleFormChange(e)} />
 
-            <Button color='teal' fluid size='large' onClick={() => this.props.handleLoginSubmit()}>
+            <Button color='teal' fluid size='large' onClick={(e) => this.props.handleLoginSubmit(e, this.state)}>
               Login
             </Button>
           </Segment>
