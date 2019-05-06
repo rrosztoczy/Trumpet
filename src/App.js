@@ -40,8 +40,8 @@ export default class App extends Component {
     this.changePage("MyTrumpets")
   }
 
-  handleUser = (userId) => {
-    this.setState({userId: userId}, () => console.log("created user:", userId))
+  handleUser = (user) => {
+    this.setState({userId: user.id}, () => console.log("created user:", user.id))
   }
 
 
@@ -73,6 +73,7 @@ export default class App extends Component {
     let reactionType = e.target.innerText.toLowerCase().slice(1)
     let cheerClicked = reactionType === "cheer" || e.target.className === "thumbs up outline icon" || e.target.className === "ui left pointing basic label"
     let jeerClicked = reactionType === "jeer" || e.target.className === "thumbs down outline icon" || e.target.className === "ui right pointing basic label"
+
 
     let selectedTrumpet = this.state.trumpets.find(trumpet => trumpet.id === trumpetId)
     let userId = this.state.userId

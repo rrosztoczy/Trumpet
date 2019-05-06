@@ -53,7 +53,7 @@ const adapter = (url) => {
         const resp = await fetch(url, postConfig)
         const jsonData = await resp.json()
         console.log("response:", jsonData)
-        handleUser ? handleUser(jsonData.id) : console.log("hi")
+        handleUser ? handleUser(jsonData) : console.log("hi")
         return jsonData
     }
 
