@@ -79,7 +79,7 @@ export default class App extends Component {
     let userId = this.state.userId
 
     // TODO: replace hardcoded username
-    let username = "donny"
+    let username = "admin"
 
     let existingCheer = selectedTrumpet.reactions.find(reaction => reaction.username === username && reaction.reaction_type === 'cheer')
     let existingJeer = selectedTrumpet.reactions.find(reaction => reaction.username === username && reaction.reaction_type === 'jeer')

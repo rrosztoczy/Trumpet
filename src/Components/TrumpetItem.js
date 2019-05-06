@@ -19,7 +19,8 @@ const TrumpetItem = ({ trumpet, onClickEdit, onReactionClick }) => {
           <Item.Extra>
             {/*from Dave - conditionally render this edit button if trumpet belongs to current user?*/}
             <Button primary icon='edit' floated='right' onClick={onClickEdit} content='Edit' />
-            <div>
+            <br />
+            <div style={{marginLeft: '95px'}}>
               <Button
                 data-id="cheer-button"
                 content='Cheer'
