@@ -21,6 +21,7 @@ const reactionAdapter = adapter(reactionEndpoint)
 export default class App extends Component {
 
   state = {
+    trumpets: []
   }
 
   componentDidMount() {
@@ -28,7 +29,6 @@ export default class App extends Component {
     (async () => {
       const trumpetsFromApi = await trumpetAdapter.getAll();
       this.setState({trumpets: trumpetsFromApi}, () => console.table(this.state))
-      this.setState({userId: 1})
     })();
 
   }
@@ -77,13 +77,13 @@ export default class App extends Component {
 
 
     let selectedTrumpet = this.state.trumpets.find(trumpet => trumpet.id === trumpetId)
-    let userId = this.state.userId
+    let userId =  localStorage.getItem("user_id")
 
     // TODO: replace hardcoded username
-    let username = "admin"
+    // let username = "admin"
 
-    let existingCheer = selectedTrumpet.reactions.find(reaction => reaction.username === username && reaction.reaction_type === 'cheer')
-    let existingJeer = selectedTrumpet.reactions.find(reaction => reaction.username === username && reaction.reaction_type === 'jeer')
+    let existingCheer = selectedTrumpet.reactions.find(reaction => reaction.user_id === userId && reaction.reaction_type === 'cheer')
+    let existingJeer = selectedTrumpet.reactions.find(reaction => reaction.user_id === userId && reaction.reaction_type === 'jeer')
 
     if (cheerClicked) {
       if (existingCheer && !existingJeer) {
@@ -163,7 +163,6 @@ export default class App extends Component {
 
   getUserTrumpets() {
     return this.state.trumpets === [] ? this.state.trumpets : this.state.trumpets.filter(trumpet => trumpet.user.id === this.state.userId)
-
   }
 
   render() {
