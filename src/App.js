@@ -75,12 +75,8 @@ export default class App extends Component {
     let cheerClicked = reactionType === "cheer" || e.target.className === "thumbs up outline icon" || e.target.className === "ui left pointing basic label"
     let jeerClicked = reactionType === "jeer" || e.target.className === "thumbs down outline icon" || e.target.className === "ui right pointing basic label"
 
-
     let selectedTrumpet = this.state.trumpets.find(trumpet => trumpet.id === trumpetId)
-    let userId =  localStorage.getItem("user_id")
-
-    // TODO: replace hardcoded username
-    // let username = "admin"
+    let userId = parseInt(localStorage.getItem("user_id"))
 
     let existingCheer = selectedTrumpet.reactions.find(reaction => reaction.user_id === userId && reaction.reaction_type === 'cheer')
     let existingJeer = selectedTrumpet.reactions.find(reaction => reaction.user_id === userId && reaction.reaction_type === 'jeer')
