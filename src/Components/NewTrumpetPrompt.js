@@ -1,18 +1,14 @@
 import React from 'react'
-import { Button, Icon, Image, Item, Label } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 
 const NewTrumpetPrompt = (props) => {
 
-
-    return(
-    <div>
-    <Button primary onClick={props.onClickNew}>
-    <Icon name='right add' /> 
-    </Button>
-    New Trumpet
-    </div>)
-    // On Click, this I
+    return (
+      <div>
+        <Button primary icon='add' onClick={props.onClickNew} content='New Trumpet' />
+      </div>
+    )
 }
 
 export default NewTrumpetPrompt

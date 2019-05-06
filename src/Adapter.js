@@ -66,11 +66,11 @@ const adapter = (url) => {
         const resp = await fetch(url + "/" + id, postConfig)
         const jsonData = await resp.json()
         console.log("response:", jsonData)
-        return jsonData
+        // return jsonData
     }
 
 
-    const destroy = async (id) => {
+    const destroy = async (id, handleDestroy) => {
         const postConfig = {
             method: "DELETE",
             headers: headers
@@ -78,7 +78,8 @@ const adapter = (url) => {
         const resp = await fetch(url + "/" + id, postConfig)
         const jsonData = await resp.json()
         console.log("response:", jsonData)
-        return jsonData
+        handleDestroy ? handleDestroy(jsonData) : console.log("hello")
+        // return jsonData
     }
 
 

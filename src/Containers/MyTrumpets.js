@@ -14,7 +14,6 @@ export default class MyTrumpets extends Component {
         this.setState(prevState => ({new: !prevState.new}))
     }
 
- 
     handleSubmitNew = (e, newTrumpet) => {
         //TODO: Replace hardcoded user id
         e.preventDefault();
@@ -44,8 +43,8 @@ export default class MyTrumpets extends Component {
         <div>My Trumpets!</div>
         <NewTrumpetPrompt onClickNew={this.onClickNew} />
         <div>{this.state.new ? this.renderNewTrumpetForm() : null}</div>
-        <Trumpets title="My Trumpets" trumpets={this.props.trumpets} handleSubmitEdit={this.handleSubmitEdit}  /* filtered by user*/ />
-        <Trumpets title="My Reactions" trumpets={this.props.trumpets /* filtered by reactions*/} />
+        <Trumpets title="My Trumpets" trumpets={this.props.trumpets /* filtered by user*/} handleSubmitEdit={this.handleSubmitEdit} onReactionClick={this.props.onReactionClick} />
+        <Trumpets title="My Reactions" trumpets={this.props.trumpets /* filtered by reactions*/} onReactionClick={this.props.onReactionClick} />
     </div>
     )}
 }

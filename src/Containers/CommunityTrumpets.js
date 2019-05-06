@@ -4,6 +4,6 @@ import Trumpets from './Trumpets'
 export default class CommunityTrumpets extends Component {
 
     render() {
-    return <Trumpets trumpets={this.props.trumpets}></Trumpets>
+      return <Trumpets trumpets={this.props.trumpets} onReactionClick={this.props.onReactionClick}></Trumpets>
     }
 }
