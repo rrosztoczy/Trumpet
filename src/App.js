@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router'
 import Nav from './Components/Nav'
 import MyTrumpets from './Containers/MyTrumpets'
 import CommunityTrumpets from './Containers/CommunityTrumpets'
@@ -20,7 +21,6 @@ const reactionAdapter = adapter(reactionEndpoint)
 export default class App extends Component {
 
   state = {
-    page: "Login"
   }
 
   componentDidMount() {
@@ -165,32 +165,44 @@ export default class App extends Component {
 
   }
 
-  changePage = (newPage) => {
-    this.setState({
-      page: newPage
-    })
-  }
+  // changePage = (newPage) => {
+  //   this.setState({
+  //     page: newPage
+  //   })
+  // }
 
   // TODO: Add in sign in and sign out page here
   // TODO: Add logout opiton to menu and a home landing ne
   renderPage = () => {
-    switch(this.state.page){
-      case "Login":
-        return <Login handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} />
-      case "SignUp":
-        return <SignUp handleFormChange={this.handleFormChange} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} createNewUser={this.createNewUser} />
-      case "MyTrumpets":
-        return <MyTrumpets trumpets={this.getUserTrumpets()} trumpetAdapter={trumpetAdapter} trumpetEndpoint={trumpetEndpoint} user_id={this.state.user_id} onReactionClick={this.onReactionClick}/>
-      case "CommunityTrumpets":
-        return <CommunityTrumpets trumpets={this.state.trumpets} onReactionClick={this.onReactionClick}/>
-      case "TrumpetAnalytics":
-        return <TrumpetAnalytics trumpets={this.state.trumpets}/>
-      case "AccountSettings":
-        return <AccountSettings />
-      default:
-        return null
-    }
+
   }
+    // switch(this.state.page){
+    //   case "Login":
+    //     return <Login handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} />
+    //   case "SignUp":
+    //     return <SignUp handleFormChange={this.handleFormChange} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} createNewUser={this.createNewUser} />
+    //   case "MyTrumpets":
+    //     return <MyTrumpets trumpets={this.getUserTrumpets()} trumpetAdapter={trumpetAdapter} trumpetEndpoint={trumpetEndpoint} user_id={this.state.user_id} onReactionClick={this.onReactionClick}/>
+    //   case "CommunityTrumpets":
+    //     return <CommunityTrumpets trumpets={this.state.trumpets} onReactionClick={this.onReactionClick}/>
+    //   case "TrumpetAnalytics":
+    //     return <TrumpetAnalytics trumpets={this.state.trumpets}/>
+    //   case "AccountSettings":
+    //     return <AccountSettings />
+    //   default:
+    //     return null
+    // }
+  
+
+  // <Switch>
+  // <Route path='/ninja-turtles' render={(props) => <NinjaTurtles {...props} turtles={this.state.turtles} ninjaTurtles={this.state.user.ninja_turtles} />} />
+  // <Route path='/new' render={() => <NewTurtle addTurtle={this.addTurtle} />} />
+  // <Route path='/carousel' render={() => <TurtleCarousel backToPond={this.backToPond} ninjifyTurtle={this.ninjifyTurtle} turtles={this.state.turtles} />} />
+  // <Route path='/turtles' render={() => <Home turtles={this.state.turtles}/> } />
+  // <Route exact path='/' component={ Welcome } />
+  // <Route component={ Goof } />
+  // </Switch>
+
 
   // render(){
   //   return (
@@ -207,9 +219,17 @@ export default class App extends Component {
     return (
       <div className="App">
         <header>
-          <Nav changePage={this.changePage} />
+          <Nav />
         </header>
-          {this.renderPage()}
+    <Switch>
+      <Route path='/login' render={() => <Login handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick}/>}/>
+      <Route path='/signup' render={() => <SignUp handleFormChange={this.handleFormChange} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} createNewUser={this.createNewUser}/>}/>
+      <Route path='/my-trumpets' render={(props) => <MyTrumpets {...props} trumpets={this.getUserTrumpets()} trumpetAdapter={trumpetAdapter} trumpetEndpoint={trumpetEndpoint} user_id={this.state.user_id} onReactionClick={this.onReactionClick}/>}/>
+      <Route path='/community-trumpets' render={(props) => <CommunityTrumpets {...props} trumpets={this.state.trumpets} onReactionClick={this.onReactionClick}/>}/>
+      <Route path='/analytics' render={(props) => <TrumpetAnalytics {...props} trumpets={this.state.trumpets}/>}/>
+      <Route path='/account-settings' render={() =>  <AccountSettings />}/>
+      <Route path='/' render={() => <Login handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick}/>}/>
+    </Switch>
       </div>
     )
   }
