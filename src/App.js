@@ -26,7 +26,7 @@ export default class App extends Component {
 
   getTrumpets = async () => {
     const trumpetsFromApi = await trumpetAdapter.getAll()
-    const sortedTrumpetsFromApi = trumpetsFromApi.sort((a, b) => -1 * a.created_at.localeCompare(b.created_at))
+    const sortedTrumpetsFromApi = await trumpetsFromApi.sort((a, b) => -1 * a.created_at.localeCompare(b.created_at))
     this.setState({trumpets: sortedTrumpetsFromApi}, () => console.table("state set:", this.state))
   };
 
