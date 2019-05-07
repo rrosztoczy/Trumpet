@@ -16,13 +16,13 @@ export default class MyTrumpets extends Component {
 
     handleSubmitNew = (e, newTrumpet) => {
         e.preventDefault();
-        const addData = {user_id: parseInt(localStorage.getItem("user_id")), user: {id: parseInt(localStorage.getItem("user_id"))}}
-        const userTrumpet = {...newTrumpet, ...addData}
+        const userTrumpet = {...newTrumpet, user_id: parseInt(localStorage.getItem("user_id"))}
         console.log("submitted obj", userTrumpet);
-        // Can I wrap this in a function from app that renders the new trumpet?
-       this.props.trumpetAdapter.create(userTrumpet)
-       this.props.renderNewTrumpet(userTrumpet)
+        (async () => {
+        const newTrumpet = await this.props.trumpetAdapter.create(userTrumpet)
+        const trumpets = await this.props.getTrumpets()
         this.setState(prevState => ({new: !prevState.new}))
+    })()
     }
 
     handleSubmitEdit = (e, editedTrumpet) => {
