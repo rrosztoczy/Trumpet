@@ -4,7 +4,7 @@ import Chart from "chart.js";
 export default class TrumpetDoughnut extends Component {
     chartRef = React.createRef();
     
-    componentDidUpdate() {
+    componentDidMount() {
         const myChartRef = this.chartRef.current.getContext("2d");
         const trumpetData = this.props.trumpets
         const trumpetType = trumpetData.map(trumpet => trumpet.trumpet_type)
