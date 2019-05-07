@@ -7,7 +7,7 @@ export default class MyTrumpets extends Component {
 
     state = {
         new: false,
-        user_id: this.props.user_id
+        user_id: parseInt(localStorage.getItem("user_id"))
     }
 
     onClickNew = () => {
@@ -15,18 +15,20 @@ export default class MyTrumpets extends Component {
     }
 
     handleSubmitNew = (e, newTrumpet) => {
-        //TODO: Replace hardcoded user id
         e.preventDefault();
-        const userTrumpet = {...newTrumpet, user_id: this.state.user_id}
+        const addData = {user_id: parseInt(localStorage.getItem("user_id")), user: {id: parseInt(localStorage.getItem("user_id"))}}
+        const userTrumpet = {...newTrumpet, ...addData}
         console.log("submitted obj", userTrumpet);
-        this.props.trumpetAdapter.create(userTrumpet)
+        // Can I wrap this in a function from app that renders the new trumpet?
+       this.props.trumpetAdapter.create(userTrumpet)
+       this.props.renderNewTrumpet(userTrumpet)
         this.setState(prevState => ({new: !prevState.new}))
     }
 
     handleSubmitEdit = (e, editedTrumpet) => {
         //TODO: Replace hardcoded user id
         e.preventDefault();
-        const userTrumpet = {...editedTrumpet, user_id: this.state.user_id}
+        const userTrumpet = {...editedTrumpet, user_id: parseInt(localStorage.getItem("user_id"))}
         console.log("submitted obj", userTrumpet);
         // {probably need an id and the obj for update}
         this.props.trumpetAdapter.update(userTrumpet.id, userTrumpet)

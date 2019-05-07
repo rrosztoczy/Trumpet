@@ -33,6 +33,15 @@ export default class App extends Component {
 
   }
 
+  renderNewTrumpet = (trumpet) => {
+    this.setState({trumpets: [...this.state.trumpets, trumpet]})
+  }
+
+  renderEditedTrumpet = () => {
+    console.log('hehe')
+  }
+
+
   createNewUser = (userInfo) => {
     const newUser = { userInfo }
     userAdapter.create(newUser.userInfo, this.handleUser)
@@ -40,13 +49,13 @@ export default class App extends Component {
   }
 
   handleUser = (user) => {
-    this.setState({userId: user.id}, () => console.log("created user:", user.id))
     localStorage.setItem("user_id", user.id)
+    this.setState({userId: user.id}, () => console.log("created user:", user.id))
   }
 
   handleLogout = (user) => {
-    this.setState({userId: null})
     localStorage.removeItem("user_id")
+    this.setState({userId: null})
     this.props.history.push({pathname: '/login'})
   }
 
@@ -158,25 +167,23 @@ export default class App extends Component {
 
 
   getUserTrumpets() {
-    return this.state.trumpets === [] ? this.state.trumpets : this.state.trumpets.filter(trumpet => trumpet.user.id === this.state.userId)
+    return this.state.trumpets === [] ? this.state.trumpets : this.state.trumpets.filter(trumpet => trumpet.user.id === parseInt(localStorage.getItem("user_id")))
   }
 
   render() {
 
     return (
       <div className="App">
-        <header>
-          <Nav handleLogout={this.handleLogout} />
-        </header>
-    <Switch>
-      <Route path='/login' render={(routeProps) => <Login {...routeProps} handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick}/>}/>
-      <Route path='/signup' render={(routeProps) => <SignUp  {...routeProps} handleFormChange={this.handleFormChange} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} createNewUser={this.createNewUser}/>}/>
-      <Route path='/my-trumpets' render={(props) => <MyTrumpets {...props} trumpets={this.getUserTrumpets()} trumpetAdapter={trumpetAdapter} trumpetEndpoint={trumpetEndpoint} user_id={this.state.user_id} onReactionClick={this.onReactionClick}/>}/>
-      <Route path='/community-trumpets' render={(props) => <CommunityTrumpets {...props} trumpets={this.state.trumpets} onReactionClick={this.onReactionClick}/>}/>
-      <Route path='/analytics' render={(props) => <TrumpetAnalytics {...props} trumpets={this.state.trumpets}/>}/>
-      <Route path='/account-settings' render={() =>  <AccountSettings />}/>
-      <Route path='/' render={(routeProps) => <Login {...routeProps} handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick}/>}/>
-    </Switch>
+        {localStorage.user_id ? <header><Nav handleLogout={this.handleLogout} /></header> : null }
+        <Switch>
+          <Route path='/login' render={(routeProps) => <Login {...routeProps} handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick}/>}/>
+          <Route path='/signup' render={(routeProps) => <SignUp  {...routeProps} handleFormChange={this.handleFormChange} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} createNewUser={this.createNewUser}/>}/>
+          <Route path='/my-trumpets' render={(props) => <MyTrumpets {...props} renderNewTrumpet={this.renderNewTrumpet} trumpets={this.getUserTrumpets()} trumpetAdapter={trumpetAdapter} trumpetEndpoint={trumpetEndpoint} user_id={this.state.user_id} onReactionClick={this.onReactionClick}/>}/>
+          <Route path='/community-trumpets' render={(props) => <CommunityTrumpets {...props} trumpets={this.state.trumpets} onReactionClick={this.onReactionClick}/>}/>
+          <Route path='/analytics' render={(props) => <TrumpetAnalytics {...props} trumpets={this.state.trumpets}/>}/>
+          <Route path='/account-settings' render={() =>  <AccountSettings />}/>
+          <Route path='/' render={(routeProps) => <Login {...routeProps} handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick}/>}/>
+        </Switch>
       </div>
     )
   }
