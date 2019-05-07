@@ -10,17 +10,17 @@ export default class CommunityTrumpets extends Component {
       return (
         <Grid celled>
         <Grid.Column width={8}>
-          <header>Trumpets Your Have Created</header>
+          <header>Trumpets from the Community</header>
           <Trumpets noEdit="noEdit" trumpets={this.props.trumpets} onReactionClick={this.props.onReactionClick}></Trumpets>
         </Grid.Column>
         <Grid.Column width={8}>
         <Grid.Row>
         <header>Holder for overall breakdown</header>
-        <TrumpetDoughnut />
+        <TrumpetDoughnut trumpets={this.props.trumpets}/>
         </Grid.Row>
         <Grid.Row>
         <header>Holder for trending chart</header>
-        <TrumpetLineChart />
+        <TrumpetLineChart trumpets={this.props.trumpets} />
         </Grid.Row>
         </Grid.Column>
         </Grid>
