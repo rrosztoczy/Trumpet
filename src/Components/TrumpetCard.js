@@ -19,6 +19,6 @@ export default class TrumpetCard extends React.Component {
 
 
 render() {
-    return this.state.edit ? <EditTrumpetForm trumpet={this.props.trumpet} cancelEdit={this.onClickEdit} onSubmitEdit={this.onSubmitEdit}/> : <TrumpetItem trumpet={this.props.trumpet} onClickEdit={this.onClickEdit} onReactionClick={this.props.onReactionClick}/>
+    return this.state.edit ? <EditTrumpetForm trumpet={this.props.trumpet} cancelEdit={this.onClickEdit} onSubmitEdit={this.onSubmitEdit}/> : <TrumpetItem noEdit={this.props.noEdit} trumpet={this.props.trumpet} onClickEdit={this.onClickEdit} onReactionClick={this.props.onReactionClick}/>
     }
 }

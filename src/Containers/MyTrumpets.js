@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Grid } from 'semantic-ui-react'
 import NewTrumpetPrompt from '../Components/NewTrumpetPrompt'
 import Trumpets from './Trumpets'
 import NewTrumpetCard from '../Components/NewTrumpetCard'
@@ -44,8 +45,16 @@ export default class MyTrumpets extends Component {
         <div>My Trumpets!</div>
         <NewTrumpetPrompt onClickNew={this.onClickNew} />
         <div>{this.state.new ? this.renderNewTrumpetForm() : null}</div>
-        <Trumpets title="My Trumpets" trumpets={this.props.myTrumpets /* filtered by user*/} handleSubmitEdit={this.handleSubmitEdit} onReactionClick={this.props.onReactionClick} />
-        <Trumpets title="My Reactions" trumpets={this.props.myReactedTrumpets /* filtered by reactions*/} onReactionClick={this.props.onReactionClick} />
+        <Grid celled>
+          <Grid.Column width={8}>
+          <header>Trumpets Your Have Created</header>
+            <Trumpets title="My Trumpets" noEdit="Edit"  trumpets={this.props.myTrumpets /* filtered by user*/} handleSubmitEdit={this.handleSubmitEdit} onReactionClick={this.props.onReactionClick} />
+          </Grid.Column>
+          <Grid.Column width={8}>
+          <header>Trumpets You Have Reacted To</header>
+            <Trumpets title="My Reactions" noEdit="noEdit" trumpets={this.props.myReactedTrumpets /* filtered by reactions*/} onReactionClick={this.props.onReactionClick} />
+          </Grid.Column>
+        </Grid>
     </div>
     )}
 }
