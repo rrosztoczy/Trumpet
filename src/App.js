@@ -167,8 +167,15 @@ export default class App extends Component {
 
 
   getUserTrumpets() {
-    console.log("user trumpets",this.state.trumpets)
     return this.state.trumpets === [] ? this.state.trumpets : this.state.trumpets.filter(trumpet => trumpet.user.id === parseInt(localStorage.getItem("user_id")))
+  }
+
+  getUsersReactedTrumpets() {
+
+    // Iterate through trumpets
+    // Iterate through reactions
+    // Return the trumpets with a reaction with user id === local storate
+    return this.state.trumpets === [] ? this.state.trumpets : this.state.trumpets.filter(trumpet => trumpet.reactions.find(reaction => reaction.user_id === parseInt(localStorage.getItem("user_id"))))
   }
 
   render() {
@@ -179,7 +186,7 @@ export default class App extends Component {
         <Switch>
           <Route path='/login' render={(routeProps) => <Login {...routeProps} handleFormChange={this.handleFormChange} handleLoginSubmit={this.handleLoginSubmit} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick}/>}/>
           <Route path='/signup' render={(routeProps) => <SignUp  {...routeProps} handleFormChange={this.handleFormChange} handleLoginOrSignUpButtonClick={this.handleLoginOrSignUpButtonClick} createNewUser={this.createNewUser}/>}/>
-          <Route path='/my-trumpets' render={(props) => <MyTrumpets {...props} getTrumpets={this.getTrumpets} trumpets={this.getUserTrumpets()} trumpetAdapter={trumpetAdapter} trumpetEndpoint={trumpetEndpoint} user_id={this.state.user_id} onReactionClick={this.onReactionClick}/>}/>
+          <Route path='/my-trumpets' render={(props) => <MyTrumpets {...props} getTrumpets={this.getTrumpets} myTrumpets={this.getUserTrumpets()} myReactedTrumpets={this.getUsersReactedTrumpets()} trumpetAdapter={trumpetAdapter} trumpetEndpoint={trumpetEndpoint} user_id={this.state.user_id} onReactionClick={this.onReactionClick}/>}/>
           <Route path='/community-trumpets' render={(props) => <CommunityTrumpets {...props} trumpets={this.state.trumpets} onReactionClick={this.onReactionClick}/>}/>
           <Route path='/analytics' render={(props) => <TrumpetAnalytics {...props} trumpets={this.state.trumpets}/>}/>
           <Route path='/account-settings' render={() =>  <AccountSettings />}/>
