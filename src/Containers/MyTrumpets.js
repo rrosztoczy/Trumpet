@@ -42,16 +42,15 @@ export default class MyTrumpets extends Component {
     render() {
     return(
     <div>
-        <div>My Trumpets!</div>
         <NewTrumpetPrompt onClickNew={this.onClickNew} />
         <div>{this.state.new ? this.renderNewTrumpetForm() : null}</div>
         <Grid celled>
           <Grid.Column width={8}>
-          <header>Trumpets Your Have Created</header>
+          <h2>Trumpets You Have Created</h2>
             <Trumpets title="My Trumpets" noEdit="Edit"  trumpets={this.props.myTrumpets /* filtered by user*/} handleSubmitEdit={this.handleSubmitEdit} onReactionClick={this.props.onReactionClick} />
           </Grid.Column>
           <Grid.Column width={8}>
-          <header>Trumpets You Have Reacted To</header>
+          <h2>Trumpets You Have Reacted To</h2>
             <Trumpets title="My Reactions" noEdit="noEdit" trumpets={this.props.myReactedTrumpets /* filtered by reactions*/} onReactionClick={this.props.onReactionClick} />
           </Grid.Column>
         </Grid>
