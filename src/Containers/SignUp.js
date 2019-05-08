@@ -53,7 +53,7 @@ export default class SignUp extends React.Component {
       {/* } */}
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color='teal' textAlign='center'>
+            <Header as='h2' color='blue' textAlign='center'>
               <Image src='/logo.png' /> Sign up with Trumpet
             </Header>
             <Form size='large'>
@@ -64,7 +64,7 @@ export default class SignUp extends React.Component {
                 <Form.Input fluid name="email" placeholder='email' onChange={(e) => this.handleFormChange(e)} />
                 <Form.Input fluid name="password" icon='lock' iconPosition='left' placeholder='password' type='password' onChange={(e) => this.handleFormChange(e)} />
 
-                <Button color='teal' fluid size='large' onClick={() => this.props.createNewUser(this.state)}>
+                <Button color='blue' fluid size='large' onClick={() => this.props.createNewUser(this.state)}>
                   Sign Up
                 </Button>
               </Segment>

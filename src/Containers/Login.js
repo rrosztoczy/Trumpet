@@ -36,7 +36,7 @@ export default class Login extends React.Component {
 
     <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as='h2' color='teal' textAlign='center'>
+        <Header as='h2' color='yellow' textAlign='center'>
           <Image src='/logo.png' /> Log in to your Trumpet account
         </Header>
         <Form size='large'>
@@ -44,7 +44,7 @@ export default class Login extends React.Component {
             <Form.Input fluid name="username" icon='user' iconPosition='left' placeholder='username' onChange={(e) => this.handleFormChange(e)} />
             <Form.Input fluid name="password" icon='lock' iconPosition='left' placeholder='password' type='password' onChange={(e) => this.handleFormChange(e)} />
 
-            <Button color='teal' fluid size='large' onClick={(e) => this.props.handleLoginSubmit(e, this.state)}>
+            <Button color='blue' fluid size='large' onClick={(e) => this.props.handleLoginSubmit(e, this.state)}>
               Login
             </Button>
           </Segment>
