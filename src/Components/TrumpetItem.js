@@ -9,18 +9,17 @@ const TrumpetItem = ({ trumpet, onClickEdit, onReactionClick, noEdit }) => {
     // If edit state is false, return the bottom, if true return the edit form
     return(
     <Item>
-        <Item.Image src='https://react.semantic-ui.com/images/wireframe/image.png' size="tiny" floated='left' />
+        <Item.Image src={trumpet.img_url} size="tiny" floated='left' />
         <Item.Content>
-          <Item.Header>{trumpet.summary}</Item.Header>
+          <Item.Header><h3>{trumpet.summary}</h3></Item.Header>
           <Item.Meta>
-            <span className='cinema'>{trumpet.trumpet_type}</span>
+            <span style={{color: 'grey'}}className='cinema'>{trumpet.trumpet_type}</span>
           </Item.Meta>
           <Item.Description>{trumpet.content}</Item.Description>
           <Item.Extra>
             {/*from Dave - conditionally render this edit button if trumpet belongs to current user?*/}
             {noEdit === "noEdit" ? null : <Button primary icon='edit' floated='right' onClick={onClickEdit} content='Edit' />}
-            <br />
-            <div style={{marginLeft: '95px'}}>
+            <div style={{marginLeft: '94px'}}>
               <Button
                 color="blue"
                 content='Cheer'
@@ -39,8 +38,8 @@ const TrumpetItem = ({ trumpet, onClickEdit, onReactionClick, noEdit }) => {
                 labelPosition='left'
                 onClick={(e) => onReactionClick(trumpet.id, e)}
               />
-            </div>
-
+          </div>
+          <br/>
             {/* <Icon color='green' name='check' /> 121 Votes */}
           </Item.Extra>
         </Item.Content>
