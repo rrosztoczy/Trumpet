@@ -53,7 +53,7 @@ export default class SignUp extends React.Component {
       {/* } */}
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color='blue' textAlign='center'>
+            <Header as='h2' color='yellow' textAlign='center'>
               <Image src='/logo.png' /> Sign up with Trumpet
             </Header>
             <Form size='large'>
