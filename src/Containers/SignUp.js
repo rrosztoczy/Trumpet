@@ -70,7 +70,7 @@ export default class SignUp extends React.Component {
               </Segment>
             </Form>
             <Message>
-              Already have an account? <button onClick={() => this.props.handleLoginOrSignUpButtonClick()}>Log in</button>
+              Already have an account? <Button size='mini' onClick={() => this.props.handleLoginOrSignUpButtonClick()}>Log in</Button>
             </Message>
           </Grid.Column>
         </Grid>

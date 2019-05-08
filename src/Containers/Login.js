@@ -50,7 +50,7 @@ export default class Login extends React.Component {
           </Segment>
         </Form>
         <Message>
-          New to us? <button onClick={() => this.props.handleLoginOrSignUpButtonClick()}>Sign Up</button>
+          New to us? <Button size='mini' onClick={() => this.props.handleLoginOrSignUpButtonClick()}>Sign up</Button>
         </Message>
       </Grid.Column>
     </Grid>
