@@ -1,8 +1,33 @@
 import React, { Component } from 'react'
 import Chart from "chart.js";
+import { checkPropTypes } from 'prop-types';
 
 export default class TrumpetLineChart extends Component {
     chartRef = React.createRef();
+
+    shouldComponentUpdate(nextProps) {
+        const oldIds = this.props.trumpets.map(trumpet => trumpet.id)
+        const newIds = nextProps.trumpets.map(trumpet => trumpet.id)
+        const is_same = (oldIds.length === newIds.length) && oldIds.every(function(element, index) {
+            return element === newIds[index]; 
+        });
+
+        const checkTypes = () => {
+        nextProps.trumpets.forEach( (newTrumpet) => {
+        const oldTrumpet = this.props.trumpets != [] ? this.props.trumpets.find(trumpet => trumpet.id === newTrumpet.id) : {}
+           if (oldTrumpet != undefined && oldTrumpet.root_url !== newTrumpet.root_url) {
+               return true
+           } else {
+               return false
+           }
+        })
+        }
+        if (is_same === true) {
+            checkTypes()
+        } else {
+            return true
+        }
+    }
 
     componentDidMount() {
         this.renderChart()
