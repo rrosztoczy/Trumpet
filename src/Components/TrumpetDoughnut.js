@@ -4,6 +4,8 @@ import Chart from "chart.js";
 export default class TrumpetDoughnut extends Component {
     chartRef = React.createRef();
 
+
+
     renderChart () {
         const myChartRef = this.chartRef.current.getContext("2d");
         const trumpetData = this.props.trumpets
@@ -34,6 +36,32 @@ export default class TrumpetDoughnut extends Component {
             }
         });
     }
+
+
+    shouldComponentUpdate(nextProps) {
+        const oldIds = this.props.trumpets.map(trumpet => trumpet.id)
+        const newIds = nextProps.trumpets.map(trumpet => trumpet.id)
+        const is_same = (oldIds.length === newIds.length) && oldIds.every(function(element, index) {
+            return element === newIds[index]; 
+        });
+
+        const checkTypes = () => {
+        nextProps.trumpets.forEach( (newTrumpet) => {
+        const oldTrumpet = this.props.trumpets != [] ? this.props.trumpets.find(trumpet => trumpet.id === newTrumpet.id) : {}
+           if (oldTrumpet != undefined && oldTrumpet.trumpet_type !== newTrumpet.trumpet_type) {
+               return true
+           } else {
+               return false
+           }
+        })
+        }
+        if (is_same === true) {
+            checkTypes()
+        } else {
+            return true
+        }
+    }
+
     componentDidMount() {
         this.renderChart()
     }
