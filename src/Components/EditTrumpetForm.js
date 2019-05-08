@@ -3,8 +3,10 @@ import { Form } from 'semantic-ui-react'
 // const paragraph = <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png'/>
 const options = [
     { key: 'b', text: 'Bias', name: "trumpet_type", value: 'Bias' },
-    { key: 'l', text: 'Lie', name: "trumpet_type", value: 'Lie' },
-    { key: 'n', text: 'No Sources', name: "trumpet_type", value: 'No Sources' }
+    { key: 'l', text: 'Fact Check', name: "trumpet_type", value: 'Fact Check' },
+    { key: 'n', text: 'No Sources', name: "trumpet_type", value: 'No Sources' },
+    { key: 'n', text: 'Scam', name: "trumpet_type", value: 'Scam' },
+    { key: 'n', text: 'Spam', name: "trumpet_type", value: 'Spam' }
   ]
 
 

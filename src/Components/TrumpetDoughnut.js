@@ -46,20 +46,22 @@ export default class TrumpetDoughnut extends Component {
         });
 
         const checkTypes = () => {
-        nextProps.trumpets.forEach( (newTrumpet) => {
-        const oldTrumpet = this.props.trumpets != [] ? this.props.trumpets.find(trumpet => trumpet.id === newTrumpet.id) : {}
-           if (oldTrumpet != undefined && oldTrumpet.trumpet_type !== newTrumpet.trumpet_type) {
-               return true
-           } else {
-               return false
-           }
-        })
-        }
+            nextProps.trumpets.forEach( (newTrumpet) => {
+            const oldTrumpet = this.props.trumpets != [] ? this.props.trumpets.find(trumpet => trumpet.id === newTrumpet.id) : {}
+            if (oldTrumpet != undefined && oldTrumpet.trumpet_type !== newTrumpet.trumpet_type) {
+                return true
+            } else {
+                return false
+            }
+            })
+            }
+
         if (is_same === true) {
             checkTypes()
         } else {
             return true
         }
+        
     }
 
     componentDidMount() {
