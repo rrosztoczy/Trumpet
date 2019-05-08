@@ -16,7 +16,6 @@ export default class Nav extends Component {
         <Menu pointing secondary>
           <Menu.Item as={NavLink} name='my trumpets' to='/my-trumpets' active={activeItem === 'my trumpets'} onClick={this.handleItemClick} />
           <Menu.Item as={NavLink} name='community trumpets' to='/community-trumpets' active={activeItem === 'community trumpets'} onClick={this.handleItemClick} />
-          <Menu.Item as={NavLink} name='analytics' to='/analytics' active={activeItem === 'analytics'} onClick={this.handleItemClick} />
           <Menu.Menu position='right'>
           <Menu.Item as={NavLink} name='account settings' to='/account-settings' active={activeItem === 'account settings'} onClick={this.handleItemClick} />
           <Menu.Item            

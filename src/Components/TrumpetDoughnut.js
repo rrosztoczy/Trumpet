@@ -4,9 +4,10 @@ import Chart from "chart.js";
 export default class TrumpetDoughnut extends Component {
     chartRef = React.createRef();
 
-    componentDidMount() {
+    renderChart () {
         const myChartRef = this.chartRef.current.getContext("2d");
         const trumpetData = this.props.trumpets
+        console.log("mounted! trumpets:", trumpetData)
         const trumpetType = trumpetData.map(trumpet => trumpet.trumpet_type)
         const labels = [... new Set(trumpetType)]
         let counts = {};
@@ -32,6 +33,13 @@ export default class TrumpetDoughnut extends Component {
                 //Customize chart options
             }
         });
+    }
+    componentDidMount() {
+        this.renderChart()
+    }
+
+    componentDidUpdate() {
+        this.renderChart()
     }
     render() {
         return (
