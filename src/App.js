@@ -46,12 +46,12 @@ export default class App extends Component {
   createNewUser = (userInfo) => {
     const newUser = { userInfo }
     userAdapter.create(newUser.userInfo, this.handleUser)
-    this.changePage("MyTrumpets")
   }
 
   handleUser = (user) => {
     localStorage.setItem("user_id", user.id)
     this.setState({userId: user.id}, () => console.log("created user:", user.id))
+    this.props.history.push({pathname: '/my-trumpets'})
   }
 
   handleLogout = (user) => {
@@ -75,7 +75,7 @@ export default class App extends Component {
   // User clicks sign up button from login page ("New to us? - Sign up")
   // User clicks log in button from sign up page ("Already have an account? - Log in")
   handleLoginOrSignUpButtonClick = () => {
-    this.state.page === "Login" ? this.changePage("SignUp") : this.changePage("Login")
+    this.props.location.pathname === '/login' || this.props.location.pathname === '/' ? this.props.history.push({pathname: '/signup'}) : this.props.history.push({pathname: '/login'})
   }
 
   // User clicks on a cheer or jeer button
