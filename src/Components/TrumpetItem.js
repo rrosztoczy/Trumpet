@@ -22,9 +22,8 @@ const TrumpetItem = ({ trumpet, onClickEdit, onReactionClick, noEdit }) => {
             <br />
             <div style={{marginLeft: '95px'}}>
               <Button
-                data-id="cheer-button"
+                color="blue"
                 content='Cheer'
-                compact
                 size='mini'
                 icon='thumbs up outline'
                 label={{ as: 'a', basic: true, content: trumpet.cheers }}
@@ -32,8 +31,8 @@ const TrumpetItem = ({ trumpet, onClickEdit, onReactionClick, noEdit }) => {
                 onClick={(e) => onReactionClick(trumpet.id, e)}
               />
               <Button
+                color="blue"
                 content='Jeer'
-                compact
                 size='mini'
                 icon='thumbs down outline'
                 label={{ as: 'a', basic: true, content: trumpet.jeers }}

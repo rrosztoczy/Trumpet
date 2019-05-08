@@ -3,7 +3,7 @@ import Chart from "chart.js";
 
 export default class TrumpetLineChart extends Component {
     chartRef = React.createRef();
-    
+
     componentDidMount() {
         const myChartRef = this.chartRef.current.getContext("2d");
         const trumpetData = this.props.trumpets
@@ -17,7 +17,7 @@ export default class TrumpetLineChart extends Component {
         console.log("chart data", chartData)
         const prettyColors = ["rgb(255, 99, 131)", "rgb(55, 162, 235)", "rgb(255, 205, 86)", "#FF9026", "#4BC1C0",  "#4BC1C0"]
         const opaquePrettyColors = ["rgb(255, 99, 131, 0.3)", "rgb(55, 162, 235, 0.3)", "rgb(255, 205, 86, 0.3)", "rgb(255, 126, 4, 0.3)", "rgb(75, 193, 192, 0.3)", "rgb(75, 193, 192, 0.3)"]
-        
+
         new Chart(myChartRef, {
             type: "bar",
             data: {
